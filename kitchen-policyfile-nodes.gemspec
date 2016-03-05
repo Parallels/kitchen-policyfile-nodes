@@ -1,10 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'kitchen/provisioner/policyfile_nodes_version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'kitchen-policyfile-nodes'
-  spec.version       = '1.0.0'
+  spec.version       = Kitchen::Provisioner::POLICYFILE_NODES_VERSION
   spec.authors       = ['Andrei Skopenko']
   spec.email         = ['andrei@skopenko.net']
   spec.description   = 'A Test Kitchen Provisioner for Chef Nodes based in Policyfile.rb'
