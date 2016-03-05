@@ -1,0 +1,26 @@
+---
+driver:
+  name: vagrant
+  provider: parallels
+  synced_folders:
+    - ["/Users/ascopenco/rpms", "/tmp/chef-pkgs"]
+
+provisioner:
+  name: policyfile_nodes
+  nodes_path: test/integration/nodes
+  policyfile: test/integration/cookbooks/test/Policyfile.rb
+  chef_omnibus_url: file:///tmp/chef-pkgs/install.sh
+
+platforms:
+  - name: el6
+    driver:
+      box: bento/centos-6.7
+
+suites:
+- name: node1
+  provisioner:
+    named_run_list: node1
+
+- name: node2
+  provisioner:
+    named_run_list: node1

@@ -1,0 +1,19 @@
+# Editors etc
+*~
+*#
+.#*
+\#*#
+.*.sw[a-z]
+*.un~
+
+*.gem
+.bundle
+.config
+.kitchen/
+Berksfile.lock
+Gemfile.lock
+lib/bundler/man
+pkg
+rdoc
+spec/reports
+test/integration/nodes
