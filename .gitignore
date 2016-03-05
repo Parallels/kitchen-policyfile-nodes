@@ -7,13 +7,10 @@
 *.un~
 
 *.gem
-.bundle
-.config
+.bundle/
+.config/
 .kitchen/
-Berksfile.lock
 Gemfile.lock
-lib/bundler/man
-pkg
-rdoc
-spec/reports
+Policyfile.lock.json
+pkg/
 test/integration/nodes
