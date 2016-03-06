@@ -14,3 +14,4 @@ Gemfile.lock
 Policyfile.lock.json
 pkg/
 test/integration/nodes
+.kitchen.local.yml

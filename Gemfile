@@ -18,6 +18,8 @@ end
 
 group :kitchen_common do
   gem 'test-kitchen', '~> 1.5'
+  gem 'winrm-fs', '~> 0.3'
+  gem 'kitchen-sync', '~> 2.0'
 end
 
 group :kitchen_vagrant do

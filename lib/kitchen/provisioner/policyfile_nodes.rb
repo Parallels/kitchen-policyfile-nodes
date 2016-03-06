@@ -20,20 +20,20 @@ require 'kitchen/provisioner/policyfile_zero'
 require 'kitchen/provisioner/base'
 require 'kitchen/transport/ssh'
 
+# continue loading if kitchen-sync not installed
 begin
   require 'kitchen/transport/sftp'
 rescue LoadError
-  info('kitchen-sync not installed, ignoring sftp...')
 end
 
 module Kitchen
   module Transport
     class Sftp
       class Connection
-        # Bug fix for session.loop never terminating if there is an SFTP conn active
-        # since as far as it is concerned there is still active stuff.
-        # This function is Copyright Fletcher Nichol
-        # Tracked in https://github.com/test-kitchen/test-kitchen/pull/724
+        # Execute a remote command over SFTP and return the command's exit code and output.
+        #
+        # @param command [String] command string to execute
+        # @return [Hash] the exit code and output of the command
         def execute_with_output_and_exit_code(command)
           exit_code = nil
           output = ''
@@ -54,7 +54,7 @@ module Kitchen
               end
             end
           end
-          session.loop { exit_code.nil? } # THERE IS A CHANGE ON THIS LINE, PAY ATTENTION!!!!!!
+          session.loop { exit_code.nil? }
           Hash(exit_code: exit_code, stdout: output)
         end
       end
@@ -86,11 +86,11 @@ module Kitchen
               end
             end
           end
-          session.loop
+          session.loop { exit_code.nil? }
           Hash(exit_code: exit_code, stdout: output)
         end
 
-        # Execute command over SSH and return the command's exit code and output.
+        # Execute command over SSH and return the command's output.
         #
         # @param command [String] command string to execute
         # @return [String] the output of the executed command
@@ -116,7 +116,7 @@ module Kitchen
   module Provisioner
     class Base
       # PolicyfileNodes needs to access to provision of the instance
-      # without invoking the behavior of Base#call because we need to 
+      # without invoking the behavior of Base#call because we need to
       # add additional command after chef_client run complete.
       #
       # @param state [Hash] mutable instance state

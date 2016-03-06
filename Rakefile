@@ -41,7 +41,7 @@ end
 namespace :policyfile do
   desc 'Run "chef update" for Policyfile.rb'
   task :update do
-    Dir.glob('test/fixtures/cookbooks/test/Policyfile.rb').each do |file|
+    Dir.glob('test/integration/cookbooks/test/Policyfile.rb').each do |file|
       cli = ChefDK::CLI.new(['update', file])
       subcommand_name, *subcommand_params = cli.argv
       subcommand = cli.instantiate_subcommand(subcommand_name)

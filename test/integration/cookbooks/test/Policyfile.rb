@@ -17,5 +17,6 @@ cookbook 'test', path: './'
 run_list 'test'
 
 # named_run_lists
-named_run_list 'node1', 'test::node1'
-named_run_list 'node2', 'test::node2'
+named_run_list 'sftp', 'test::sftp'
+named_run_list 'ssh', 'test::ssh'
+named_run_list 'winrm', 'test::winrm'
