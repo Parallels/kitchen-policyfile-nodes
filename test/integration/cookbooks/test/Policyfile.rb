@@ -19,4 +19,3 @@ run_list 'test'
 # named_run_lists
 named_run_list 'sftp', 'test::sftp'
 named_run_list 'ssh', 'test::ssh'
-named_run_list 'winrm', 'test::winrm'

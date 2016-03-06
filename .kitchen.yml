@@ -13,31 +13,15 @@ platforms:
     driver:
       box: bento/centos-6.7
 
-  - name: win2012r2
-    driver:
-      box: win-2012r2-base
-
 suites:
   - name: sftp
     transport:
       name: sftp
     provisioner:
       named_run_list: sftp
-    includes:
-      - el6
 
   - name: ssh
     transport:
       name: ssh
     provisioner:
       named_run_list: ssh
-    includes:
-      - el6
-
-  - name: win
-    transport:
-      name: winrm
-    provisioner:
-      named_run_list: winrm
-    includes:
-      - win2012r2
