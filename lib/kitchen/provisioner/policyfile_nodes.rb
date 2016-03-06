@@ -20,52 +20,94 @@ require 'kitchen/provisioner/policyfile_zero'
 require 'kitchen/provisioner/base'
 require 'kitchen/transport/ssh'
 
+begin
+  require 'kitchen/transport/sftp'
+rescue LoadError
+  info('kitchen-sync not installed, ignoring sftp...')
+end
+
 module Kitchen
   module Transport
-    class Ssh
-      # Execute a remote command over SSH and return the command's exit code.
-      #
-      # @param command [String] command string to execute
-      # @return [Integer] the exit code of the command
-      # @api private
-      def execute_with_output_and_exit_code(command)
-        exit_code = nil
-        output = ''
-        session.open_channel do |channel|
-          channel.request_pty
+    class Sftp
+      class Connection
+        # Bug fix for session.loop never terminating if there is an SFTP conn active
+        # since as far as it is concerned there is still active stuff.
+        # This function is Copyright Fletcher Nichol
+        # Tracked in https://github.com/test-kitchen/test-kitchen/pull/724
+        def execute_with_output_and_exit_code(command)
+          exit_code = nil
+          output = ''
+          session.open_channel do |channel|
+            channel.request_pty
 
-          channel.exec(command) do |_ch, _success|
-            channel.on_data do |_ch, data|
-              output << data
-            end
+            channel.exec(command) do |_ch, _success|
+              channel.on_data do |_ch, data|
+                output << data
+              end
 
-            channel.on_extended_data do |_ch, _type, data|
-              output << data
-            end
+              channel.on_extended_data do |_ch, _type, data|
+                output << data
+              end
 
-            channel.on_request('exit-status') do |_ch, data|
-              exit_code = data.read_long
+              channel.on_request('exit-status') do |_ch, data|
+                exit_code = data.read_long
+              end
             end
           end
+          session.loop { exit_code.nil? } # THERE IS A CHANGE ON THIS LINE, PAY ATTENTION!!!!!!
+          Hash(exit_code: exit_code, stdout: output)
         end
-        session.loop
-        Hash(exit_code: exit_code, stdout: output)
       end
+    end
 
-      # (see Base::Connection#execute)
-      def execute_with_output(command)
-        return if command.nil?
-        logger.debug("[SSH] #{self} (#{command})")
-        output = execute_with_output_and_exit_code(command)
+    class Ssh
+      class Connection
+        # Execute a remote command over SSH and return the command's exit code and output.
+        #
+        # @param command [String] command string to execute
+        # @return [Hash] the exit code and output of the command
+        def execute_with_output_and_exit_code(command)
+          exit_code = nil
+          output = ''
+          session.open_channel do |channel|
+            channel.request_pty
 
-        if output[:exit_code] != 0
-          raise Transport::SshFailed,
-            "SSH exited (#{exit_code}) for command: [#{command}]"
+            channel.exec(command) do |_ch, _success|
+              channel.on_data do |_ch, data|
+                output << data
+              end
+
+              channel.on_extended_data do |_ch, _type, data|
+                output << data
+              end
+
+              channel.on_request('exit-status') do |_ch, data|
+                exit_code = data.read_long
+              end
+            end
+          end
+          session.loop
+          Hash(exit_code: exit_code, stdout: output)
         end
-      rescue Net::SSH::Exception => ex
-        raise SshFailed, "SSH command failed (#{ex.message})"
+
+        # Execute command over SSH and return the command's exit code and output.
+        #
+        # @param command [String] command string to execute
+        # @return [String] the output of the executed command
+        def execute_with_output(command)
+          return if command.nil?
+          logger.debug("[SSH] #{self} (#{command})")
+          output = execute_with_output_and_exit_code(command)
+
+          if output[:exit_code] != 0
+            raise Transport::SshFailed,
+              "SSH exited (#{exit_code}) for command: [#{command}]"
+          end
+          output[:stdout]
+        rescue Net::SSH::Exception => ex
+          raise SshFailed, "SSH command failed (#{ex.message})"
+        end
       end
-      output[:stdout]
     end
   end
 end
@@ -73,7 +115,9 @@ end
 module Kitchen
   module Provisioner
     class Base
-      # Runs the provisioner on the instance.
+      # PolicyfileNodes needs to access to provision of the instance
+      # without invoking the behavior of Base#call because we need to 
+      # add additional command after chef_client run complete.
       #
       # @param state [Hash] mutable instance state
       # @raise [ActionFailed] if the action could not be completed
