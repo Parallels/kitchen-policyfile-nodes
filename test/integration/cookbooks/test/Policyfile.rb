@@ -14,8 +14,8 @@ default_source :supermarket
 cookbook 'test', path: './'
 
 # run_list: chef-client will run these recipes in the order specified.
-run_list 'test'
+run_list 'test::default'
 
 # named_run_lists
-named_run_list 'sftp', 'test::sftp'
-named_run_list 'ssh', 'test::ssh'
+named_run_list 'sftp', 'test::default'
+named_run_list 'ssh', 'test::search'

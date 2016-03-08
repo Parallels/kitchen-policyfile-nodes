@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: test
-# Resource:: ssh
+# Resource:: search
 #
 # Copyright 2015 Andrei Skopenko
 #

@@ -55,7 +55,7 @@ module Kitchen
             end
           end
           session.loop { exit_code.nil? }
-          Hash(exit_code: exit_code, stdout: output)
+          [exit_code, output]
         end
       end
     end
@@ -87,7 +87,7 @@ module Kitchen
             end
           end
           session.loop { exit_code.nil? }
-          Hash(exit_code: exit_code, stdout: output)
+          [exit_code, output]
         end
 
         # Execute command over SSH and return the command's output.
@@ -97,13 +97,13 @@ module Kitchen
         def execute_with_output(command)
           return if command.nil?
           logger.debug("[SSH] #{self} (#{command})")
-          output = execute_with_output_and_exit_code(command)
+          exit_code, output = execute_with_output_and_exit_code(command)
 
-          if output[:exit_code] != 0
+          if exit_code != 0
             raise Transport::SshFailed,
               "SSH exited (#{exit_code}) for command: [#{command}]"
           end
-          output[:stdout]
+          output
         rescue Net::SSH::Exception => ex
           raise SshFailed, "SSH command failed (#{ex.message})"
         end
