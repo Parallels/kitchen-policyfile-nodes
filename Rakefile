@@ -6,12 +6,11 @@ require 'rubocop/rake_task'
 require 'kitchen'
 require 'chef-dk/cli'
 
-namespace :style do
-  desc 'Run Ruby style checks'
-  RuboCop::RakeTask.new(:ruby)
-end
+# Rubocop
+desc 'Run Ruby style checks'
+RuboCop::RakeTask.new(:rubocop)
 
-# Rspec and ChefSpec
+# Rspec
 desc 'Run ChefSpec examples'
 RSpec::Core::RakeTask.new(:spec)
 
@@ -39,4 +38,4 @@ namespace :policyfile do
 end
 
 # Default
-task default: ['style:ruby', 'spec', 'policyfile:update', 'integration:vagrant']
+task default: ['rubocop', 'spec', 'policyfile:update', 'integration:vagrant']
