@@ -34,6 +34,10 @@ example:
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
+## <a name="testing"></a> Testing
+
+1. Run `rake` for unit testing
+
 ## <a name="authors"></a> Authors
 
 Created and maintained by [Andrei Skopenko][author] (<andrei@skopenko.net>)
