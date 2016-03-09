@@ -46,6 +46,7 @@ example:
 
 ## <a name="testing"></a> Testing
 
+1. Run `bundle install`
 1. Run `rake` for unit testing
 
 ## <a name="authors"></a> Authors
