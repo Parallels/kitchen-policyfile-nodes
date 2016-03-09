@@ -7,12 +7,10 @@ group :rake do
 end
 
 group :lint do
-  gem 'foodcritic', '~> 6.0'
   gem 'rubocop', '~> 0.37'
 end
 
 group :unit do
-  gem 'berkshelf', '~> 4.1'
   gem 'chefspec', '~> 4.5'
 end
 

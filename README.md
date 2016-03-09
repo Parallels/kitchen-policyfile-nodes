@@ -46,6 +46,6 @@ Apache 2.0 (see [LICENSE][license])
 [author]:           https://github.com/scopenco
 [issues]:           https://github.com/scopenco/kitchen-policyfile-nodes/issues
 [license]:          https://github.com/scopenco/kitchen-policyfile-nodes/blob/master/LICENSE
-[repo]:             https://github.com/scopenco/kitchen-nodes
+[repo]:             https://github.com/scopenco/kitchen-policyfile-nodes
 [driver_usage]:     http://docs.kitchen-ci.org/drivers/usage
 [chef_omnibus_dl]:  http://www.getchef.com/chef/install/

@@ -24,6 +24,7 @@ require 'kitchen/transport/ssh'
 begin
   require 'kitchen/transport/sftp'
 rescue LoadError
+  puts 'Ignoring sftp transport...'
 end
 
 module Kitchen
