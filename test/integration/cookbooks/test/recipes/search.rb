@@ -16,7 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-first_node = search(:node, "run_list:*sftp* AND platform:#{node['platform']}")
+first_node = search(:node, "name:sftp-* AND platform:#{node['platform']}")
 
 ruby_block 'save attributes' do
   block do

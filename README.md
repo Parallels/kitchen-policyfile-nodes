@@ -1,4 +1,4 @@
-# <a name="title"></a> Kitchen::PolicyfileNodes
+# Kitchen::PolicyfileNodes
 
 A Test Kitchen Provisioner that extent functionality of `policyfile_zero` provisioner.
 
@@ -10,17 +10,17 @@ In `policyfile_zero` we have to create mock in node_path for this search. `polic
 
 `policyfile_nodes` supports SSH and SFTP (kitchen-sync) transporters.
 
-## <a name="requirements"></a> Requirements
+## Requirements
 
 * ChefDK 0.10.0+
 
-## <a name="installation"></a> Installation
+## Installation
 
 ```
 gem install kitchen-policyfile-nodes
 ```
 
-## <a name="config"></a> Configuration
+## Configuration
 
 Use `policyfile_nodes` instead of `policyfile_zero` for the kitchen provisioner name.
 
@@ -29,7 +29,7 @@ provisioner:
   name: policyfile_nodes
 ```
 
-## <a name="development"></a> Development
+## Development
 
 * Source hosted at [GitHub][repo]
 * Report issues/questions/feature requests on [GitHub Issues][issues]
@@ -44,16 +44,16 @@ example:
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
-## <a name="testing"></a> Testing
+## Testing
 
 1. Run `bundle install`
-1. Run `rake` for unit testing
+2. Run `rake` for unit testing
 
-## <a name="authors"></a> Authors
+## Authors
 
 Created and maintained by [Andrei Skopenko][author] (<andrei@skopenko.net>)
 
-## <a name="license"></a> License
+## License
 
 Apache 2.0 (see [LICENSE][license])
 
