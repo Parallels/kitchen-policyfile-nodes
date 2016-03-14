@@ -30,8 +30,8 @@ provisioner:
 
 ## Development
 
-* Source hosted at [GitHub][repo]
-* Report issues/questions/feature requests on [GitHub Issues][issues]
+* Source hosted at [GitHub][https://github.com/Parallels/kitchen-policyfile-nodes]
+* Report issues/questions/feature requests on [GitHub Issues][https://github.com/Parallels/kitchen-policyfile-nodes/issues]
 
 Pull requests are very welcome! Make sure your patches are well tested.
 Ideally create a topic branch for every separate change you make. For
@@ -58,8 +58,8 @@ Apache 2.0 (see [LICENSE][license])
 
 
 [author]:           https://github.com/scopenco
-[issues]:           https://github.com/scopenco/kitchen-policyfile-nodes/issues
-[license]:          https://github.com/scopenco/kitchen-policyfile-nodes/blob/master/LICENSE
-[repo]:             https://github.com/scopenco/kitchen-policyfile-nodes
+[issues]:           https://github.com/Parallels/kitchen-policyfile-nodes/issues
+[license]:          https://github.com/Parallels/kitchen-policyfile-nodes/blob/master/LICENSE
+[repo]:             https://github.com/Parallels/kitchen-policyfile-nodes
 [driver_usage]:     http://docs.kitchen-ci.org/drivers/usage
 [chef_omnibus_dl]:  http://www.getchef.com/chef/install/
