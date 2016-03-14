@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = Kitchen::Provisioner::POLICYFILE_NODES_VERSION
   spec.authors       = ['Andrei Skopenko']
   spec.email         = ['andrei@skopenko.net']
-  spec.description   = 'A Test Kitchen Provisioner for Chef Nodes based in Policyfile.rb'
+  spec.description   = 'Test Kitchen provisioner based on policyfile_zero that generates searchable nodes'
   spec.summary       = spec.description
-  spec.homepage      = ''
+  spec.homepage      = 'https://github.com/Parallels/kitchen-policyfile-nodes'
   spec.license       = 'Apache 2.0'
 
   spec.files         = `git ls-files -z`.split("\x0")
