@@ -19,6 +19,6 @@
 module Kitchen
   # Version string for Policyfile_nodes Kitchen driver
   module Provisioner
-    POLICYFILE_NODES_VERSION = '1.0.0'.freeze
+    POLICYFILE_NODES_VERSION = '1.0.1'.freeze
   end
 end
