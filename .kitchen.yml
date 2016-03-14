@@ -1,0 +1,26 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: policyfile_nodes
+  nodes_path: test/integration/nodes
+  policyfile: test/integration/cookbooks/test/Policyfile.rb
+
+platforms:
+  - name: el6
+    driver:
+      box: bento/centos-6.7
+
+suites:
+  - name: sftp
+    transport:
+      name: sftp
+    provisioner:
+      named_run_list: sftp
+
+  - name: ssh
+    transport:
+      name: ssh
+    provisioner:
+      named_run_list: ssh
