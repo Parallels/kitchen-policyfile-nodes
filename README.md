@@ -30,8 +30,8 @@ provisioner:
 
 ## Development
 
-* Source hosted at [GitHub][https://github.com/Parallels/kitchen-policyfile-nodes]
-* Report issues/questions/feature requests on [GitHub Issues][https://github.com/Parallels/kitchen-policyfile-nodes/issues]
+* Source hosted at [GitHub](https://github.com/Parallels/kitchen-policyfile-nodes)
+* Report issues/questions/feature requests on [GitHub Issues](https://github.com/Parallels/kitchen-policyfile-nodes/issues)
 
 Pull requests are very welcome! Make sure your patches are well tested.
 Ideally create a topic branch for every separate change you make. For
