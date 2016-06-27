@@ -1,1 +1,2 @@
 name 'test'
+depends 'chocolatey'

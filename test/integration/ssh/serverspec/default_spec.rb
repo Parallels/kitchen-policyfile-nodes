@@ -31,16 +31,4 @@ describe 'sftp node' do
   describe command('hostname') do
     its(:stdout) { should_not match(/#{Regexp.quote(fqdn)}/) }
   end
-
-  it 'has a computername matching node fqdn' do
-    connection.open_channel do |channel|
-      channel.request_pty
-      channel.exec('hostname') do |_ch, _success|
-        channel.on_data do |_ch, data|
-          expect(data.chomp).to eq(fqdn)
-        end
-      end
-    end
-    connection.loop
-  end
 end
