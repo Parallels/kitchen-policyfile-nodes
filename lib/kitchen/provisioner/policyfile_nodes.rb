@@ -99,10 +99,11 @@ module Kitchen
         # TODO need to fix scheme
         def download(remote, local)
           FileUtils.mkdir_p(File.dirname(local))
-          #session.scp.download!(remote, local, {})
+          file_manager ||= WinRM::FS::FileManager.new(service)
+          file_manager.download(remote, local)
           logger.debug("Downloaded #{remote} to #{local}")
-        #rescue Net::SSH::Exception => ex
-        #  raise SshFailed, "SCP download failed (#{ex.message})"
+        rescue Kitchen::Transport::WinrmFailed => ex
+          raise WinrmFailed, "Winrm download failed (#{ex.message})"
         end
       end
     end
@@ -167,8 +168,7 @@ module Kitchen
       end
 
       def win_int_node_file
-        # remove session path https://blogs.msdn.microsoft.com/oldnewthing/20110125-00/?p=11673
-        File.join(config[:root_path], '../../nodes', "#{instance.name}.json")
+        File.join(config[:root_path], 'nodes', "#{instance.name}.json").tr('/', '\\')
       end
     end
   end
