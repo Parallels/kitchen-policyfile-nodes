@@ -1,3 +1,6 @@
+## 1.2.0 (July 14, 2016)
+  - Add WINRM support
+
 ## 1.1.0 (March 16, 2015)
   - Switch to SCP download of node json object
   - Create node_path directory if doesn't exists
