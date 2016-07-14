@@ -1,15 +1,21 @@
 # Kitchen::PolicyfileNodes
 
 Provisioner `policyfile_nodes` extends `policyfile_zero` by adding one more step in the end of converge - it downloads the resulted node
-JSON object to the `nodes_path` on the host machine after successful converge over SSH. It allows you to use this node object for searches while converging another
-Test Kitchen suites. So, you can use actual node IP addresses to communicate nodes with each other.
+JSON object to the `nodes_path` on the host machine after successful converge. It allows you to use this node object for searches while converging another
+Test Kitchen suites. So, you can use actual node attributes like ipaddress/fqdn to communicate nodes with each other.
 
 For example, 'web' node need to search 'db' node ip.
 In `policyfile_zero` we have to create mock in node_path for this search. `policyfile_nodes` will create mock automatically.
 
 ## Requirements
 
-* ChefDK 0.10.0+
+* ChefDK 0.12.0+
+* Test Kitchen 1.7.3+
+
+## Supports
+
+* Linux
+* Windows 2012 RC2
 
 ## Installation
 

@@ -13,7 +13,7 @@ describe 'sftp node' do
   it 'has ip' do
     expect(node['automatic'].key?('ipaddress')).to eq(true)
   end
-  
+
   it 'has fqdn' do
     expect(node['automatic'].key?('fqdn')).to eq(true)
   end
@@ -29,7 +29,7 @@ describe 'win node' do
   it 'has ip' do
     expect(node['automatic'].key?('ipaddress')).to eq(true)
   end
-  
+
   it 'has fqdn' do
     expect(node['automatic'].key?('fqdn')).to eq(true)
   end
