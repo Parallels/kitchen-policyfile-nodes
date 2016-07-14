@@ -1,3 +1,6 @@
+## 1.2.1 (July 14, 2016)
+  - Update docs
+
 ## 1.2.0 (July 14, 2016)
   - Add WINRM support
 
