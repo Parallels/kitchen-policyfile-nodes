@@ -12,15 +12,34 @@ platforms:
     driver:
       box: bento/centos-6.7
 
+  - name: win2012R2
+    driver:
+      box: win-2012r2-base
+      customize:
+        memsize: 2048
+        cpus: 2
+
 suites:
   - name: sftp
     transport:
       name: sftp
     provisioner:
       named_run_list: sftp
+    excludes:
+      - win2012R2
+
+  - name: winrm
+    transport:
+      name: winrm
+    provisioner:
+      named_run_list: win
+    excludes:
+      - el6
 
   - name: ssh
     transport:
       name: ssh
     provisioner:
       named_run_list: ssh
+    excludes:
+      - win2012R2
