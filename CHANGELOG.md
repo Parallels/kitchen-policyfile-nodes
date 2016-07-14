@@ -1,3 +1,6 @@
+## 1.2.2 (July 14, 2016)
+  - Update dependances
+
 ## 1.2.1 (July 14, 2016)
   - Update docs
 
