@@ -1,2 +1,1 @@
 name 'test'
-depends 'chocolatey'

@@ -9,26 +9,28 @@ describe 'sftp node' do
       IO.read(File.join(ENV['TEMP'] || '/tmp', 'kitchen/sftp.json'))
     )
   end
-  let(:ip) { node['automatic']['ipaddress'] }
-  let(:fqdn) { node['automatic']['fqdn'] }
-  let(:connection) do
-    Net::SSH.start(
-      ip,
-      'vagrant',
-      password: 'vagrant',
-      paranoid: false
+
+  it 'has ip' do
+    expect(node['automatic'].key?('ipaddress')).to eq(true)
+  end
+  
+  it 'has fqdn' do
+    expect(node['automatic'].key?('fqdn')).to eq(true)
+  end
+end
+
+describe 'win node' do
+  let(:node) do
+    JSON.parse(
+      IO.read(File.join(ENV['TEMP'] || '/tmp', 'kitchen/win.json'))
     )
   end
 
-  it 'has an non localhost ip' do
-    expect(ip).not_to eq('127.0.0.1')
+  it 'has ip' do
+    expect(node['automatic'].key?('ipaddress')).to eq(true)
   end
-
-  it 'has a valid ip' do
-    expect(ip).to match(/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/)
-  end
-
-  describe command('hostname') do
-    its(:stdout) { should_not match(/#{Regexp.quote(fqdn)}/) }
+  
+  it 'has fqdn' do
+    expect(node['automatic'].key?('fqdn')).to eq(true)
   end
 end

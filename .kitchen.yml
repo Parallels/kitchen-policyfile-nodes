@@ -1,7 +1,6 @@
 ---
 driver:
   name: vagrant
-  provider: parallels
 
 provisioner:
   name: policyfile_nodes
