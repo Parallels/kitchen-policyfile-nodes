@@ -1,5 +1,7 @@
 # Kitchen::PolicyfileNodes
 
+# ATENTION!!! This project is outdated. Please use [kitchen-chefzero-nodes](https://github.com/scopenco/kitchen-chefzero-nodes) provisioner with the same functionality.
+
 Provisioner `policyfile_nodes` extends `policyfile_zero` by adding one more step in the end of converge - it downloads the resulted node
 JSON object to the `nodes_path` on the host machine after successful converge. It allows you to use this node object for searches while converging another
 Test Kitchen suites. So, you can use actual node attributes like ipaddress/fqdn to communicate nodes with each other.
